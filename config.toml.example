@@ -1,0 +1,35 @@
+# ⚠️ 安全:本文件包含 sessionKey,泄漏即等于账号被盗。
+# .gitignore 已排除 config.toml。服务器上请 chmod 600 config.toml。
+
+# --- 全局配置 ---
+
+# 轮询间隔(秒)
+poll_interval = 30
+
+# claude.ai API 根域(一般不改)
+api_base = "https://claude.ai"
+
+# 模拟的浏览器 User-Agent(从你的浏览器 DevTools 复制即可)
+user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+
+# 是否清理 claude.ai 的 Web 会话(浏览器/移动端登录)
+# false(默认):只管 Claude Code OAuth token,不动 web 会话
+# true:每轮把非 monitor 自身的 web 会话也踢掉(更激进,但你常用 web 端的话会被频繁登出)
+cleanup_web_sessions = false
+
+# --- 账号 ---
+# 每个账号一个 [accounts.<name>] 块。
+# <name> 只允许字母数字、下划线、连字符,会出现在日志和 CLI 中。
+# 至少一个,可以多个。
+
+[accounts.main]
+# claude.ai organization id (从浏览器 cookie 的 lastActiveOrg 字段获取)
+org_id = "REPLACE-WITH-YOUR-ORG-ID"
+# claude.ai 会话密钥 (DevTools → Application → Cookies → sessionKey)
+# 形如 sk-ant-sid01-...,可以带或不带 'sessionKey=' 前缀
+session_key = "REPLACE-WITH-YOUR-SESSION-KEY"
+
+# 多账号示例(取消注释并填值):
+# [accounts.backup]
+# org_id = "..."
+# session_key = "..."

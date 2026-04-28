@@ -1,0 +1,9 @@
+[project]
+name = "cc-token-guard"
+version = "0.1.0"
+description = "监控并撤销 claude.ai Claude Code 未授权 OAuth token"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28.1",
+    "structlog>=25.5.0",
+]
